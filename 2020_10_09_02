@@ -1,0 +1,40 @@
+'''
+Implement a Text Editor with 4 operations
+  1. WRITE X - write 'X' to editor
+  2. READ - Print the editor content
+  3. UNDO - undo operation
+  4. REDO - redo operation
+'''
+
+global undo
+global redo
+undo=[]
+redo=[]
+def UNDO(undo,redo):
+    x=undo[-1]
+    undo.pop()
+    redo.append(x)
+
+def REDO(undo,redo):
+    x=redo[-1]
+    redo.pop()
+    undo.append(x)
+
+def READ(undo):
+    print("".join(undo))
+
+def WRITE(undo,x):
+    undo.append(x)
+    
+
+arr=input().split()
+for i in range(len(arr)):
+    if arr[i]=="UNDO":
+        UNDO(undo,redo)
+    elif arr[i]=="REDO":
+        REDO(undo,redo)
+    elif arr[i]=="READ":
+        READ(undo)
+    else:
+        WRITE(undo,arr[i][6])
+
