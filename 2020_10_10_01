@@ -1,0 +1,23 @@
+'''
+Problem: https://leetcode.com/problems/find-the-duplicate-number/
+Floyd's Tortoise and hare algo
+O(N) TC
+O(1) SC
+'''
+
+def cycle(arr):
+    fast=arr[0]
+    slow=arr[0]
+    while True:
+        slow=arr[slow]
+        fast=arr[arr[fast]]
+        if slow==fast:
+            break
+    slow=arr[0]
+    while slow!=fast:
+        slow=arr[slow]
+        fast=arr[fast]
+    return slow
+
+arr=list(map(int,input().split()))
+print(cycle(arr))
